@@ -1,0 +1,87 @@
+[VALIDATE_1]
+###Rule
+single-choice
+
+###Question
+In the RSS feed example, each of the items has a thumbnail element carrying information for a small image. What is the namespace that qualifies this element name?
+
+###Match
+[ ] dc
+[ ] content
+[x] media
+
+[VALIDATE_1]
+
+[VALIDATE_2]
+###Rule
+single-choice
+
+###Question
+The resource at the URL that represents Atom's default namespace is a page describing that namespace. It explains that the Atom Syndication Format was developed by the atompub Working Group, within which organization?
+
+###Match
+[ ] IANA
+[x] IETF
+[ ] ICANN
+
+[VALIDATE_2]
+
+[VALIDATE_3]
+###Rule
+single-choice
+
+###Question
+The Atom Publishing Protocol standard is described in an RFC document. What number is that document?
+
+###Match
+[ ] 4287
+[x] 5023
+[ ] 2616
+
+[VALIDATE_3]
+
+[VALIDATE_4]
+###Rule
+single-choice
+
+###Question
+In CRUD+Q, what does the Q stand for?
+
+###Match
+[ ] Quick
+[ ] Quite
+[ ] Quote
+[x] Query
+
+[VALIDATE_4]
+
+[VALIDATE_6]
+###Rule
+multiple-choice
+
+###Question
+In the full OData V4 Northwind service document, which of these are available collections?
+
+###Match
+[x] Categories
+[x] Products
+[ ] Quotations
+[x] Territories
+[x] Summary_of_Sales_by_Years
+
+[VALIDATE_6]
+
+[VALIDATE_7]
+###Rule
+single-choice
+
+###Question
+The Accept header was used here in the request to express a preferred content type (application/atom+xml). What is the name of the header in the corresponding HTTP response that declares what the content type of the response payload (i.e. the resource's representation) is?
+
+###Match
+[ ] Response-Payload
+[x] Content-Type
+[ ] Media-Type
+[ ] Accepted
+
+[VALIDATE_7]

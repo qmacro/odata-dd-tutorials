@@ -1,0 +1,61 @@
+[VALIDATE_1]
+###Rule
+single-choice
+
+###Question
+On the OData TC page, the committee's description is "Simplifying X across disparate applications in enterprise, Cloud, and mobile devices". What is X?
+
+###Match
+[x] data sharing
+[ ] API calls
+[ ] services
+
+[VALIDATE_1]
+
+[VALIDATE_2]
+###Rule
+multiple-choice
+
+###Question
+Which of these are valid stages in the Specification Lifecycle?
+
+###Match
+[x] Working Draft
+[x] Committee Draft
+[ ] Committee Approval
+[x] Public Review Draft
+[x] Committee Specification
+[x] OASIS Standard
+
+[VALIDATE_2]
+
+[VALIDATE_3]
+###Rule
+single-choice
+
+###Question
+In the abstract, in the header section of the standards document "OData Version 4.01 Part 2: URL Conventions", the specification is defined as a set of recommended rules for constructing what?
+
+###Match
+[ ] payloads
+[ ] responses
+[ ] messages
+[x] URLs
+[ ] APIs
+
+[VALIDATE_3]
+
+[VALIDATE_4]
+###Rule
+single-choice
+
+###Question
+For the "OData Version 4.01 Part 1: Protocol standards document, what is the earliest specification lifecycle stage (dated 08 Dec 2016)?
+
+###Match
+[ ] Committee Specification Draft 00
+[ ] Working Draft 01
+[x] Committee Specification Draft 01 / Public Review Draft 01
+[ ] Committee Specification Draft 02
+
+[VALIDATE_4]
