@@ -56,7 +56,7 @@ rel|href
 
 Let's go the hard way round to understand what this term is, and how the value structure is defined. To do that, we should look at the [XML representation of the Org.OData.Core.V1 vocabulary](https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml), and search for the relevant term.
 
-> As we search, we also will notice that the schema within this resource, specifically the "Org.OData.Core.V1" schema, is adorned with a "Core.Links" annotation itself, too! And it works because of the OData namespace "Core" provides a pointer to itself. Yet more beauty, which we'll see a bit more of shortly, too.
+> As we search, we also will notice that the schema within this resource, specifically the "Org.OData.Core.V1" schema, is adorned with a "Core.Links" annotation itself, too! And it works because of the OData namespace "Core" provides a pointer to itself. Yet more beauty, which we'll see more of shortly, too.
 
 Within the "Org.OData.Core.V1" schema, we find two elements, right next to each other, that are relevant to our search - a `<Term>` and a `<ComplexType>`:
 
@@ -64,6 +64,7 @@ Within the "Org.OData.Core.V1" schema, we find two elements, right next to each 
 <Term Name="Links" Type="Collection(Core.Link)" Nullable="false">
   <Annotation Term="Core.Description" String="Link to related information" />
 </Term>
+
 <ComplexType Name="Link">
   <Annotation Term="Core.Description" String="The Link term is inspired by the `atom:link` element, see [RFC4287](https://tools.ietf.org/html/rfc4287#section-4.2.7), and the `Link` HTTP header, see [RFC5988](https://tools.ietf.org/html/rfc5988)" />
   <Property Name="rel" Type="Edm.String" Nullable="false">
@@ -76,17 +77,19 @@ Within the "Org.OData.Core.V1" schema, we find two elements, right next to each 
 </ComplexType>
 ```
 
-This is where the "Links" term, in the "Core" namespace (representing the vocabulary), is defined, in a `<Term>` element. What can we discern?
+This is where the "Links" term, in the "Core" namespace (representing the vocabulary), is defined, in a `<Term>` element. The `<Term>` element itself is defined in the OData standards document that has accompanied us on this journey of discovery: "OData Version 4.0. Part 3: Common Schema Definition Language (CSDL)", specifically in [section 14.1 Element edm:Term](https://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/part3-csdl/odata-v4.0-errata03-os-part3-csdl-complete.html#_Toc453752620)
 
-- the `<Term>` element is defined in the OData standards document that has accompanied us on this journey of discovery: "OData Version 4.0. Part 3: Common Schema Definition Language (CSDL)", specifically in [section 14.1 Element edm:Term](https://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/part3-csdl/odata-v4.0-errata03-os-part3-csdl-complete.html#_Toc453752620)
+Here's what we can we discern from this `<Term>` element:
+
+- the term's name is "Links"
 - the term's type is defined as being a collection (an array) of individual "Core.Link" items
-- it is annotated with a "Core.Description" term (which is a part of this very vocabulary, more beauty!) that tells us this term is for links to related information
+- it is annotated with a "Core.Description" term (which is a part of this very vocabulary, more beauty!) that tells us this term is for "links to related information"
 
 The "Core.Link" item is defined with a corresponding `<ComplexType>` element, which:
 
-- is annotated with a "Core.Description" term telling us more about it 
+- is annotated with a "Core.Description" term telling us more about it
 - includes, in that description, a reference to the `atom` namespace and RFC 4287 (Atom Syndication Format) which we looked at in the first tutorial in this mission on the [Origins](https://developers.sap.com/tutorials/odata-dd-1-origins.html) of OData
-- is defined as having two properties "rel" and "href", each of which has the type "edm.String" and each of which are also annotated with "Core.Description"
+- is defined as having two properties "rel" and "href", each of which has the type "edm.String" and each of which are also annotated with "Core.Description" (the latter is also annotated with "Core.IsURL")
 
 Here's what that looks like, pictorally:
 
@@ -119,7 +122,7 @@ Namespace: Core
 
 As a bonus, and to help drive home how OData vocabularies and metadata metadata (yes, that is deliberately written twice) works, let's spend a moment of practice following the other annotation with which the "Core.Link" complex type's property "href" is annotated, namely "Core.IsURL".
 
-Look through the [Core XML schema](https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml) for the "IsURL" term. You should find this:
+Look again through the [Org.OData.Core.V1 schema XML](https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml) for the "IsURL" term. You should find this:
 
 ```xml
 <Term Name="IsURL" Type="Core.Tag" Nullable="false" DefaultValue="true" AppliesTo="Property Term">
@@ -138,7 +141,7 @@ Descend yet one level deeper to find out what the "Core.Tag" type is, whereupon 
 
 And with the definition of this type being a Boolean (in the "edm" namespace, see the [Metadata](https://developers.sap.com/tutorials/odata-dd-4-metadata.html) tutorial earlier in this mission), we've bottomed out our investigation.
 
-Tracking back up to where we started this descent, the schema in our [OData metadata document](https://odd.cfapps.eu10.hana.ondemand.com/northbreeze/$metadata), we can now confidently understand that:
+Tracking back up to where we started this descent, in the schema in our [OData metadata document](https://odd.cfapps.eu10.hana.ondemand.com/northbreeze/$metadata), we can now confidently understand that:
 
 Level 0 (our OData metadata)
 
@@ -154,12 +157,12 @@ Level 1 (the "Core" vocabulary)
 Level 2 (annotations used for vocabulary content)
 
 - the "Links" term, the "Link" complex type, and both properties are also themselves annotated with terms from "Core"
-- the predominant term for these (meta) annotations within the "Core" vocabulary is "Description"
+- the predominant term used in these (meta) annotations within the "Core" vocabulary is "Description"
 - but there's also the term "IsURL", which is defined as being of type "Tag"
 
 Level 3 (annotations used for building blocks of annotations)
 
 - and the "Tag" type is defined as a Boolean
-- as well as being annotated (with the "Description" term)
+- as well as being annotated itself too (with the "Description" term)
 
-Well done!
+Phew!
