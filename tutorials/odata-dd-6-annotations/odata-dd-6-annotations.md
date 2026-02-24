@@ -169,7 +169,7 @@ Phew!
 
 ### Revisit the Core vocabulary via the HTML representation
 
-Now that we've done the hard work of examining the XML representation of the "Core" vocabulary, let's take a breather and look at the HTML representation (we saw how these are related in the previous tutorial on [Vocabularies](https://developers.sap.com/tutorials/odata-dd-5-vocabularies.html), at <https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.html>.
+Now that we've done the hard work of examining the XML representation of the "Core" vocabulary, let's take a breather and look at the HTML representation (we saw how these are related in the previous tutorial on [Vocabularies](https://developers.sap.com/tutorials/odata-dd-5-vocabularies.html)), at <https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.html>.
 
 We see some familiar information that should help clarify and cement our understanding.
 
@@ -177,7 +177,15 @@ We see some familiar information that should help clarify and cement our underst
 
 First, the description "Core terms needed to write vocabularies" explains why so many aspects of the "Core" vocabulary were indeed annotated themselves with terms from that very same vocabulary.
 
-Next, in the list of terms, we see the "Links" term with its type defined as "[Link]", i.e. an array (`[...]`) or collection of "Link" types.
+Next, in the list of terms, we see the "Links" term with its type defined as "[Link]", i.e. an array (`[...]`) or collection of "Link" types. Following the hyperlinked "Link" we are taken to the [Link](https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.html#Link) type definition:
+
+![The Link type definition](core-vocab-link.png)
+
+The keen observers amongst you will realise that the descriptions in this HTML representation are taken directly from the values of the "Core.Description" terms that adorn the XML representation, suggesting that the HTML representation is generated from the XML representation too.
+
+> In fact, the source of the HTML representation is in Markdown format, which makes sense too, given that there is Markdown in some of the "Core.Description" string values ([the description for this "Core.Link" type](https://github.com/oasis-tcs/odata-vocabularies/blob/main/vocabularies/Org.OData.Core.V1.xml#L119) is a good example of this).
+
+
 
 
 
