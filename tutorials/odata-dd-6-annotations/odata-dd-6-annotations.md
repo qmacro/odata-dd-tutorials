@@ -183,13 +183,9 @@ Next, in the list of terms, we see the "Links" term with its type defined as "[L
 
 The keen observers amongst you will realise that the descriptions in this HTML representation are taken directly from the values of the "Core.Description" terms that adorn the XML representation, suggesting that the HTML representation is generated from the XML representation too.
 
-> In fact, the source of the HTML representation is in Markdown format, which makes sense too, given that there is Markdown in some of the "Core.Description" string values ([the description for this "Core.Link" type](https://github.com/oasis-tcs/odata-vocabularies/blob/main/vocabularies/Org.OData.Core.V1.xml#L119) is a good example of this).
+> In fact, [the source of the HTML representation is in Markdown format](https://github.com/oasis-tcs/odata-vocabularies/blob/main/vocabularies/Org.OData.Core.V1.md), which makes sense too, given that there is Markdown in some of the "Core.Description" string values ([the description for this "Core.Link" type](https://github.com/oasis-tcs/odata-vocabularies/blob/main/vocabularies/Org.OData.Core.V1.xml#L119) is a good example of this).
 
-
-
-
-
-### Examine the other annotations
+### Examine the other Capabilities annotations
 
 Now we understand how to read, interpret and navigate annotations, let's turn our attention to the other annotations in our [Northbreeze OData metadata document](https://odd.cfapps.eu10.hana.ondemand.com/northbreeze/$metadata):
 
@@ -249,8 +245,29 @@ Now we understand how to read, interpret and navigate annotations, let's turn ou
 
 From our first look at annotations in the previous tutorial on [Vocabularies](https://developers.sap.com/tutorials/odata-dd-5-vocabularies.html) we understand that these annotations are targeting the various entitysets: "Products", "Categories" and "Suppliers". XML has a reputation for being verbose, and that reputation is earned here.
 
-But with the ability we now have to read and understand annotation terms and values, we can see that all these annotations are from the "Capabilities" vocabulary (Org.OData.Capabilities.V1) and they are all of the same theme of operational limitations, with the terms being "DeleteRestrictions", "InsertRestrictions" and "UpdateRestrictions".
+However, with the ability we now have to read and understand annotation terms & values, we can see that all these annotations are from the "Capabilities" vocabulary (Org.OData.Capabilities.V1) and they are all of the same theme of operational limitations, with the terms being "DeleteRestrictions", "InsertRestrictions" and "UpdateRestrictions".
 
-Each term 
+Each of the entitysets is annotated with three terms, each of which has a record structure as its type. Let's dig in to the first occurring term for the first entityset, which is "Capabilities.DeleteRestrictions" applied to "Products".
 
+> The way this works for the other terms (for insert and update operations) and entitysets ("Categories" and "Suppliers") is very similar; digging into those is left as an exercise for you, dear reader.
 
+Starting with the annotation target, which is "Main.EntityContainer/Products", we see that the first of the three annotations that are being applied is "Capabilities.DeleteRestrictions":
+
+```xml
+<Annotations Target="Main.EntityContainer/Products">
+  <Annotation Term="Capabilities.DeleteRestrictions">
+    <Record Type="Capabilities.DeleteRestrictionsType">
+      <PropertyValue Property="Deletable" Bool="false"/>
+    </Record>
+  </Annotation>
+  ...
+</Annotations>
+```
+
+If we look at the [HTML representation of the Org.OData.Capabilities.V1 vocabulary](https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.html) we see that "DeleteRestrictions" is indeed listed in the Terms section, and is defined as having the [DeleteRestrictionsType](https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.html#DeleteRestrictionsType), which looks like this:
+
+![deleterestrictionstype definition](delete-restrictions-type.png)
+
+One of the properties in this type (this record structure, effectively) is the Boolean "Deletable", a value for which (`false`) is provided in the annotation for this entityset.
+
+> Note that the "DeleteRestrictionsType" type is defined as being derived from [DeleteRestrictionsBase](https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.html#DeleteRestrictionsBase). The difference between this base type and the derived type is that the derived type has one additional property [NonDeletableNavigationProperties](https://github.com/oasis-tcs/odata-vocabularies/blob/main/vocabularies/Org.OData.Capabilities.V1.xml#L876) which is a detail we don't have to worry over at this level of exploration.
