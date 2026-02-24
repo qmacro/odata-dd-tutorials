@@ -54,7 +54,7 @@ rel|href
 
 ### Dig into the XML representation of the Core vocabulary
 
-Let's go the hard way round to understand what this term is, and how the value structure is defined. To do that, we should look at the [XML representation of the Org.OData.Core.V1 vocabulary](https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml), and search for the relevant term.
+Let's first go the hard way round to understand what this term is, and how the value structure is defined. To do that, we should look at the [XML representation of the Org.OData.Core.V1 vocabulary](https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml), and search for the relevant term.
 
 > As we search, we also will notice that the schema within this resource, specifically the "Org.OData.Core.V1" schema, is adorned with a "Core.Links" annotation itself, too! And it works because of the OData namespace "Core" provides a pointer to itself. Yet more beauty, which we'll see more of shortly, too.
 
@@ -166,3 +166,83 @@ Level 3 (annotations used for building blocks of annotations)
 - as well as being annotated itself too (with the "Description" term)
 
 Phew!
+
+### Revisit the Core vocabulary via the HTML representation
+
+Now that we've done the hard work of examining the XML representation of the "Core" vocabulary, let's take a breather and look at the HTML representation (we saw how these are related in the previous tutorial on [Vocabularies](https://developers.sap.com/tutorials/odata-dd-5-vocabularies.html), at <https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.html>.
+
+We see some familiar information that should help clarify and cement our understanding.
+
+![The first part of the HTML representation of the "Core" vocabulary](core-vocab-top.png)
+
+First, the description "Core terms needed to write vocabularies" explains why so many aspects of the "Core" vocabulary were indeed annotated themselves with terms from that very same vocabulary.
+
+Next, in the list of terms, we see the "Links" term with its type defined as "[Link]", i.e. an array (`[...]`) or collection of "Link" types.
+
+
+
+### Examine the other annotations
+
+Now we understand how to read, interpret and navigate annotations, let's turn our attention to the other annotations in our [Northbreeze OData metadata document](https://odd.cfapps.eu10.hana.ondemand.com/northbreeze/$metadata):
+
+```xml
+<Annotations Target="Main.EntityContainer/Products">
+  <Annotation Term="Capabilities.DeleteRestrictions">
+    <Record Type="Capabilities.DeleteRestrictionsType">
+      <PropertyValue Property="Deletable" Bool="false"/>
+    </Record>
+  </Annotation>
+  <Annotation Term="Capabilities.InsertRestrictions">
+    <Record Type="Capabilities.InsertRestrictionsType">
+      <PropertyValue Property="Insertable" Bool="false"/>
+    </Record>
+  </Annotation>
+  <Annotation Term="Capabilities.UpdateRestrictions">
+    <Record Type="Capabilities.UpdateRestrictionsType">
+      <PropertyValue Property="Updatable" Bool="false"/>
+    </Record>
+  </Annotation>
+</Annotations>
+<Annotations Target="Main.EntityContainer/Categories">
+  <Annotation Term="Capabilities.DeleteRestrictions">
+    <Record Type="Capabilities.DeleteRestrictionsType">
+      <PropertyValue Property="Deletable" Bool="false"/>
+    </Record>
+  </Annotation>
+  <Annotation Term="Capabilities.InsertRestrictions">
+    <Record Type="Capabilities.InsertRestrictionsType">
+      <PropertyValue Property="Insertable" Bool="false"/>
+    </Record>
+  </Annotation>
+  <Annotation Term="Capabilities.UpdateRestrictions">
+    <Record Type="Capabilities.UpdateRestrictionsType">
+      <PropertyValue Property="Updatable" Bool="false"/>
+    </Record>
+  </Annotation>
+</Annotations>
+<Annotations Target="Main.EntityContainer/Suppliers">
+  <Annotation Term="Capabilities.DeleteRestrictions">
+    <Record Type="Capabilities.DeleteRestrictionsType">
+      <PropertyValue Property="Deletable" Bool="false"/>
+    </Record>
+  </Annotation>
+  <Annotation Term="Capabilities.InsertRestrictions">
+    <Record Type="Capabilities.InsertRestrictionsType">
+      <PropertyValue Property="Insertable" Bool="false"/>
+    </Record>
+  </Annotation>
+  <Annotation Term="Capabilities.UpdateRestrictions">
+    <Record Type="Capabilities.UpdateRestrictionsType">
+      <PropertyValue Property="Updatable" Bool="false"/>
+    </Record>
+  </Annotation>
+</Annotations>
+```
+
+From our first look at annotations in the previous tutorial on [Vocabularies](https://developers.sap.com/tutorials/odata-dd-5-vocabularies.html) we understand that these annotations are targeting the various entitysets: "Products", "Categories" and "Suppliers". XML has a reputation for being verbose, and that reputation is earned here.
+
+But with the ability we now have to read and understand annotation terms and values, we can see that all these annotations are from the "Capabilities" vocabulary (Org.OData.Capabilities.V1) and they are all of the same theme of operational limitations, with the terms being "DeleteRestrictions", "InsertRestrictions" and "UpdateRestrictions".
+
+Each term 
+
+
