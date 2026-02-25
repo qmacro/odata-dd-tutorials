@@ -108,6 +108,6 @@ In case you haven't yet got round to running your own instance of the Northbreez
 
 Head over to <https://odd.cfapps.eu10.hana.ondemand.com/> ("odd" is short for "OData Deep Dive") to see the start page, and take a look around.
 
-## Further info
+### Further info
 
 - [Capire](https://cap.cloud.sap/docs/) - the official CAP documentation

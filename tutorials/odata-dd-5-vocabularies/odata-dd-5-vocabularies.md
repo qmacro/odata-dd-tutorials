@@ -249,3 +249,7 @@ are being applied via `Target="Main.EntityContainer/Categories"` to the "Categor
 ```
 
 In the next tutorial we'll dig in to the detail of the annotations used in this OData metadata document.
+
+### Further info
+
+- [OData @ SAP - SAP Vocabularies](https://sap.github.io/odata-vocabularies/)

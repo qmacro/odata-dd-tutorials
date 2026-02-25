@@ -243,3 +243,7 @@ Following these annotations terms, with their Boolean `false` values, we can see
 > If at this point you're still looking at the metadata document for the the publicly available read-only service (mentioned in the [Northbreeze](https://developers.sap.com/tutorials/odata-dd-3-northbreeze.html) tutorial) at <https://odd.cfapps.eu10.hana.ondemand.com/northbreeze/$metadata>, all the entitysets are read-only and you'll see the same `<Annotations Target="...">` pattern for the other entitysets.
 
 By the way, this OData service is being served by a CAP Node.js server, where the entity projection(s) in the service definition have the simple CDS-level annotation `@readonly` assigned. This is translated into these triplets of "Capabilities" based delete, insert and update restriction annotations at the OData level.
+
+### Further info
+
+- the [@readonly](https://cap.cloud.sap/docs/guides/services/constraints#readonly) section of the Input Validation topic in Capire
