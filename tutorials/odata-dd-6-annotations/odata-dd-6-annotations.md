@@ -190,23 +190,6 @@ The keen observers amongst you will realise that the descriptions in this HTML r
 Now we understand how to read, interpret and navigate annotations, let's turn our attention to the other annotations in our [Northbreeze OData metadata document](https://odd.cfapps.eu10.hana.ondemand.com/northbreeze/$metadata):
 
 ```xml
-<Annotations Target="Main.EntityContainer/Products">
-  <Annotation Term="Capabilities.DeleteRestrictions">
-    <Record Type="Capabilities.DeleteRestrictionsType">
-      <PropertyValue Property="Deletable" Bool="false"/>
-    </Record>
-  </Annotation>
-  <Annotation Term="Capabilities.InsertRestrictions">
-    <Record Type="Capabilities.InsertRestrictionsType">
-      <PropertyValue Property="Insertable" Bool="false"/>
-    </Record>
-  </Annotation>
-  <Annotation Term="Capabilities.UpdateRestrictions">
-    <Record Type="Capabilities.UpdateRestrictionsType">
-      <PropertyValue Property="Updatable" Bool="false"/>
-    </Record>
-  </Annotation>
-</Annotations>
 <Annotations Target="Main.EntityContainer/Categories">
   <Annotation Term="Capabilities.DeleteRestrictions">
     <Record Type="Capabilities.DeleteRestrictionsType">
@@ -224,37 +207,20 @@ Now we understand how to read, interpret and navigate annotations, let's turn ou
     </Record>
   </Annotation>
 </Annotations>
-<Annotations Target="Main.EntityContainer/Suppliers">
-  <Annotation Term="Capabilities.DeleteRestrictions">
-    <Record Type="Capabilities.DeleteRestrictionsType">
-      <PropertyValue Property="Deletable" Bool="false"/>
-    </Record>
-  </Annotation>
-  <Annotation Term="Capabilities.InsertRestrictions">
-    <Record Type="Capabilities.InsertRestrictionsType">
-      <PropertyValue Property="Insertable" Bool="false"/>
-    </Record>
-  </Annotation>
-  <Annotation Term="Capabilities.UpdateRestrictions">
-    <Record Type="Capabilities.UpdateRestrictionsType">
-      <PropertyValue Property="Updatable" Bool="false"/>
-    </Record>
-  </Annotation>
-</Annotations>
 ```
 
-From our first look at annotations in the previous tutorial on [Vocabularies](https://developers.sap.com/tutorials/odata-dd-5-vocabularies.html) we understand that these annotations are targeting the various entitysets: "Products", "Categories" and "Suppliers". XML has a reputation for being verbose, and that reputation is earned here.
+From our first look at annotations in the previous tutorial on [Vocabularies](https://developers.sap.com/tutorials/odata-dd-5-vocabularies.html) we understand that these annotations are targeting the "Categories" entityset. XML has a reputation for being verbose, and that reputation is earned here.
 
-However, with the ability we now have to read and understand annotation terms & values, we can see that all these annotations are from the "Capabilities" vocabulary (Org.OData.Capabilities.V1) and they are all of the same theme of operational limitations, with the terms being "DeleteRestrictions", "InsertRestrictions" and "UpdateRestrictions".
+However, with the ability we now have to read and understand annotation terms & values, we can see that all these annotations terms are from the "Capabilities" vocabulary (Org.OData.Capabilities.V1) and they are all of the same theme of operational limitations, with the terms being "DeleteRestrictions", "InsertRestrictions" and "UpdateRestrictions".
 
-Each of the entitysets is annotated with three terms, each of which has a record structure as its type. Let's dig in to the first occurring term for the first entityset, which is "Capabilities.DeleteRestrictions" applied to "Products".
+The entityset is annotated with three terms, each of which has a record structure as its type. Let's dig in to the first occurring term which is "Capabilities.DeleteRestrictions".
 
-> The way this works for the other terms (for insert and update operations) and entitysets ("Categories" and "Suppliers") is very similar; digging into those is left as an exercise for you, dear reader.
+> The way this works for the other terms (for insert and update operations) is very similar; digging into those is left as an exercise for you, dear reader.
 
-Starting with the annotation target, which is "Main.EntityContainer/Products", we see that the first of the three annotations that are being applied is "Capabilities.DeleteRestrictions":
+Starting with the annotation target, which is "Main.EntityContainer/Categories", we see that the first of the three annotations that are being applied is "Capabilities.DeleteRestrictions":
 
 ```xml
-<Annotations Target="Main.EntityContainer/Products">
+<Annotations Target="Main.EntityContainer/Categories">
   <Annotation Term="Capabilities.DeleteRestrictions">
     <Record Type="Capabilities.DeleteRestrictionsType">
       <PropertyValue Property="Deletable" Bool="false"/>
@@ -268,8 +234,12 @@ If we look at the [HTML representation of the Org.OData.Capabilities.V1 vocabula
 
 ![deleterestrictionstype definition](delete-restrictions-type.png)
 
-One of the properties in this type (this record structure, effectively) is the Boolean "Deletable", a value for which (`false`) is provided in the annotation for this entityset.
+One of the properties in this type (this record structure, effectively) is the Boolean "Deletable", a value for which (`false`) is provided in the annotation for the entityset.
 
 > Note that the "DeleteRestrictionsType" type is defined as being derived from [DeleteRestrictionsBase](https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.html#DeleteRestrictionsBase). The difference between this base type and the derived type is that the derived type has one additional property [NonDeletableNavigationProperties](https://github.com/oasis-tcs/odata-vocabularies/blob/main/vocabularies/Org.OData.Capabilities.V1.xml#L876) which is a detail we don't have to worry over at this level of exploration.
 
-Following these annotations terms, with their Boolean `false` values, for each of the entitysets, we can see that effectively, all the entitysets are read-only (in fact, this OData service is being served by a CAP Node.js server, where the entity projections in the service definition have the CDS-level annotation `@readonly` assigned, which is translated into these triplets of "Capabilities" based delete, insert and update restriction annotations at the OData level).
+Following these annotations terms, with their Boolean `false` values, we can see that the entityset is effectively read-only.
+
+> If at this point you're still looking at the metadata document for the the publicly available read-only service (mentioned in the [Northbreeze](https://developers.sap.com/tutorials/odata-dd-3-northbreeze.html) tutorial) at <https://odd.cfapps.eu10.hana.ondemand.com/northbreeze/$metadata>, all the entitysets are read-only and you'll see the same `<Annotations Target="...">` pattern for the other entitysets.
+
+By the way, this OData service is being served by a CAP Node.js server, where the entity projection(s) in the service definition have the simple CDS-level annotation `@readonly` assigned. This is translated into these triplets of "Capabilities" based delete, insert and update restriction annotations at the OData level.

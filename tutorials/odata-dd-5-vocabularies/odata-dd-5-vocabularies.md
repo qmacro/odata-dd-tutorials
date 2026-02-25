@@ -187,7 +187,7 @@ So in this case, the (entire) schema is being annotated with "Core.Links":
 +--------+                 +----------+
 ```
 
-Further on in the metadata document we see an example of the other approach, where `<Annotation>` elements appear as direct children of a containing `<Annotations>` element, and the schema elements to which the annotations are applied are specified in `Target` attributes:
+Further on in the metadata document we see an example of the other approach, where `<Annotation>` elements appear as direct children of a containing `<Annotations>` element, and the schema element to which the annotations are to be applied are specified in the `Target` attribute of that `<Annotations>` container:
 
 > Again, as explained in the previous [Metadata](https://developers.sap.com/tutorials/odata-dd-4-metadata.html) tutorial, in the "Get acquainted with the schema element" step, we'll leave out the XML namespace prefix `edm` here when writing elements that belong to that namespace.
 
