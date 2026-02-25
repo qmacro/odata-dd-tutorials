@@ -26,6 +26,10 @@ In all cases, annotations consist of two parts:
 
 In this tutorial we'll examine the terms, along with their types and possible values, in our [Northbreeze OData metadata document](https://odd.cfapps.eu10.hana.ondemand.com/northbreeze/$metadata).
 
+> This tutorial belongs to the OData Deep Dive mission, a re-write of the original. The re-write is a work in progess, please proceed with caution! More info can be found in the blog post [OData Deep Dive rewrite in the open](https://qmacro.org/blog/posts/2026/02/02/odata-deep-dive-rewrite-in-the-open/).
+
+---
+
 ### Revisit the Core.Links annotation
 
 One of the annotations we took a brief first look at in the previous tutorial was "Core.Links", where "Core" is the vocabulary alias, referring here to "Org.OData.Core.V1".
