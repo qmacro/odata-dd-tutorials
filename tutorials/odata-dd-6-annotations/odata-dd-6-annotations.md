@@ -211,7 +211,7 @@ Now we understand how to read, interpret and navigate annotations, let's turn ou
 
 From our first look at annotations in the previous tutorial on [Vocabularies](https://developers.sap.com/tutorials/odata-dd-5-vocabularies.html) we understand that these annotations are targeting the "Categories" entityset. XML has a reputation for being verbose, and that reputation is earned here.
 
-However, with the ability we now have to read and understand annotation terms & values, we can see that all these annotations terms are from the "Capabilities" vocabulary (Org.OData.Capabilities.V1) and they are all of the same theme of operational limitations, with the terms being "DeleteRestrictions", "InsertRestrictions" and "UpdateRestrictions".
+However, with the ability we now have to read and understand annotation terms & values, we can see that all these annotations terms are from the [Capabilities](https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.xml) vocabulary (Org.OData.Capabilities.V1) and they are all of the same theme of operational limitations, with the terms being "DeleteRestrictions", "InsertRestrictions" and "UpdateRestrictions".
 
 The entityset is annotated with three terms, each of which has a record structure as its type. Let's dig in to the first occurring term which is "Capabilities.DeleteRestrictions".
 
