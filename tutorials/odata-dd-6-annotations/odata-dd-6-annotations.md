@@ -56,7 +56,7 @@ rel|href
 
 Let's first go the hard way round to understand what this term is, and how the value structure is defined. To do that, we should look at the [XML representation of the Org.OData.Core.V1 vocabulary](https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml), and search for the relevant term.
 
-> As we search, we also will notice that the schema within this resource, specifically the "Org.OData.Core.V1" schema, is adorned with a "Core.Links" annotation itself, too! And it works because of the OData namespace "Core" provides a pointer to itself. Yet more beauty, which we'll see more of shortly, too.
+> As we search, we also will notice that the schema within this resource, specifically the "Org.OData.Core.V1" schema, is adorned with a "Core.Links" annotation itself, too! And it works because of the OData namespace "Core" provides a pointer to itself. Further beauty, which we'll see more of shortly, too.
 
 Within the "Org.OData.Core.V1" schema, we find two elements, right next to each other, that are relevant to our search - a `<Term>` and a `<ComplexType>`:
 
@@ -77,13 +77,13 @@ Within the "Org.OData.Core.V1" schema, we find two elements, right next to each 
 </ComplexType>
 ```
 
-This is where the "Links" term, in the "Core" namespace (representing the vocabulary), is defined, in a `<Term>` element. The `<Term>` element itself is defined in the OData standards document that has accompanied us on this journey of discovery: "OData Version 4.0. Part 3: Common Schema Definition Language (CSDL)", specifically in [section 14.1 Element edm:Term](https://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/part3-csdl/odata-v4.0-errata03-os-part3-csdl-complete.html#_Toc453752620)
+This is where the "Links" term, in the "Core" namespace (representing the vocabulary), is defined, i.e. in a `<Term>` element. The `<Term>` element itself is defined in the OData standards document that has accompanied us on this journey of discovery: "OData Version 4.0. Part 3: Common Schema Definition Language (CSDL)", specifically in [section 14.1 Element edm:Term](https://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/part3-csdl/odata-v4.0-errata03-os-part3-csdl-complete.html#_Toc453752620).
 
 Here's what we can we discern from this `<Term>` element:
 
-- the term's name is "Links"
-- the term's type is defined as being a collection (an array) of individual "Core.Link" items
-- it is annotated with a "Core.Description" term (which is a part of this very vocabulary, more beauty!) that tells us this term is for "links to related information"
+- the name is "Links"
+- the type is defined as being a collection (an array) of individual "Core.Link" items
+- it's annotated with a "Core.Description" term (which is a part of this very vocabulary, more beauty!) that tells us this term is for "links to related information"
 
 The "Core.Link" item is defined with a corresponding `<ComplexType>` element, which:
 
@@ -211,7 +211,7 @@ Now we understand how to read, interpret and navigate annotations, let's turn ou
 
 From our first look at annotations in the previous tutorial on [Vocabularies](https://developers.sap.com/tutorials/odata-dd-5-vocabularies.html) we understand that these annotations are targeting the "Categories" entityset. XML has a reputation for being verbose, and that reputation is earned here.
 
-However, with the ability we now have to read and understand annotation terms & values, we can see that all these annotations terms are from the [Capabilities](https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.xml) vocabulary (Org.OData.Capabilities.V1) and they are all of the same theme of operational limitations, with the terms being "DeleteRestrictions", "InsertRestrictions" and "UpdateRestrictions".
+However, with the ability we now have to read and understand annotation terms & values, we can see that all these annotation terms are from the [Capabilities](https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.xml) vocabulary (Org.OData.Capabilities.V1) and they are all of the same theme of operational limitations, with the terms being "DeleteRestrictions", "InsertRestrictions" and "UpdateRestrictions".
 
 The entityset is annotated with three terms, each of which has a record structure as its type. Let's dig in to the first occurring term which is "Capabilities.DeleteRestrictions".
 
