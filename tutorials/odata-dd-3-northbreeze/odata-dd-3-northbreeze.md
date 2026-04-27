@@ -42,7 +42,7 @@ You will need:
 
 The OData service is deliberately simple and contains a small handful of entities in the domain model, and a single service made available via the OData V4 protocol.
 
-Head to <https://github.com/qmacro/odata-dd-server> and take a look around, especially in the CAP project directory [northbreeze](https://github.com/qmacro/odata-dd-server/tree/main/northbreeze).
+Head to <https://github.com/SAP-samples/odata-dd-server> and take a look around, especially in the CAP project directory [northbreeze](https://github.com/SAP-samples/odata-dd-server/tree/main/northbreeze).
 
 ### Run as a Docker container
 
@@ -53,19 +53,19 @@ docker run \
   --rm \
   --tty \
   --publish 4004:4004 \
-  ghcr.io/qmacro/odd
+  ghcr.io/sap-samples/odd
 ```
 
 This should first emit `docker` output:
 
 ```log
-Unable to find image 'ghcr.io/qmacro/odd:latest' locally
-latest: Pulling from qmacro/odd
+Unable to find image 'ghcr.io/sap-samples/odd:latest' locally
+latest: Pulling from sap-samples/odd
 c74c1b58c0fe: Pull complete
 599d5b6b6766: Extracting [===>] ...
 c9b629762372: ...
 Digest: sha256:c2678197eb57da768edee4184901be3fa96d4c894a3396d09a2e5e36a1c91c42
-Status: Downloaded newer image for ghcr.io/qmacro/odd:latest
+Status: Downloaded newer image for ghcr.io/sap-samples/odd:latest
 ```
 
 Then the CAP server output should appear:
